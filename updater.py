@@ -8,13 +8,20 @@ import os
 file_path = os.path.join(os.path.dirname(__file__), 'data.csv')
 
 def seleccionar_valores():
-    seleccionados = []
-    for combo in combos:
+    seleccionados_G = []
+    seleccionados_P = []
+    
+    for combo in combos_G:
         valor = combo.get()
         if valor:
-            seleccionados.append(valor)
+            seleccionados_G.append(valor)
+    
+    for combo in combos_P:
+        valor = combo.get()
+        if valor:
+            seleccionados_P.append(valor)
 
-    if len(set(seleccionados)) != len(seleccionados):
+    if len(set(seleccionados_G + seleccionados_P)) != len(seleccionados_G + seleccionados_P):
         messagebox.showwarning("Error", "No podes repetir jugadores.")
         return
     # if len(seleccionados) != 10:
@@ -24,14 +31,14 @@ def seleccionar_valores():
     with open(file_path, 'r', encoding='utf-8') as file:
         data = list(csv.reader(file))
         for row in data:
-            if check_var.get() and row[0] in seleccionados:
+            if check_var.get() and row[0] in seleccionados_G + seleccionados_P:
                 row[2] = int(row[2]) + 1
-            if not check_var.get() and row[0] in seleccionados[:5]:
+            if not check_var.get() and row[0] in seleccionados_G:
                 row[1] = int(row[1]) + 1
-            if not check_var.get() and row[0] in seleccionados[5:]:
+            if not check_var.get() and row[0] in seleccionados_P:
                 row[3] = int(row[3]) + 1
     
-    with open(file_path, 'w', encoding='utf-8') as file:
+    with open(file_path, 'w', encoding='utf-8', newline='\n') as file:
         escritor_csv = csv.writer(file)
         escritor_csv.writerows(data)
     messagebox.showinfo("Guardado Exitoso", "Se guardó el resultado del partido")
@@ -54,7 +61,7 @@ def agregar_jugador():
             escritor_csv.writerow([valor, 0, 0, 0])
         
         lista_valores = cargar_valores()
-        for combo in combos:
+        for combo in combos_G + combos_P:
             combo['values'] = lista_valores
         messagebox.showinfo("Nuevo jugador guardado", f"{valor} se guardó como nuevo jugador.")
         ventana_nueva.destroy()
@@ -80,7 +87,8 @@ def cargar_valores():
 lista_valores = cargar_valores()
 root = tk.Tk()
 
-combos = []
+combos_G = []
+combos_P = []
 
 font = Font(weight="bold")
 label_col1 = tk.Label(root, text="Equipo Ganador", font=font)
@@ -91,12 +99,12 @@ label_col2.grid(row=0, column=1, padx=10, pady=5)
 for i in range(5):
     combo = ttk.Combobox(root, values=lista_valores, state="readonly", width=20)
     combo.grid(row=i+1, column=0, padx=10, pady=10)
-    combos.append(combo)
+    combos_G.append(combo)
 
 for i in range(5):
     combo = ttk.Combobox(root, values=lista_valores, state="readonly", width=20)
     combo.grid(row=i+1, column=1, padx=10, pady=10)
-    combos.append(combo)
+    combos_P.append(combo)
 
 check_var = tk.BooleanVar()
 checkbutton = tk.Checkbutton(root, text="Hubo empate", variable=check_var)
