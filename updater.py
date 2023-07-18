@@ -17,9 +17,9 @@ def seleccionar_valores():
     if len(set(seleccionados)) != len(seleccionados):
         messagebox.showwarning("Error", "No podes repetir jugadores.")
         return
-    if len(seleccionados) != 10:
-        messagebox.showwarning("Error", "Debes seleccionar exactamente 10 valores.")
-        return
+    # if len(seleccionados) != 10:
+    #     messagebox.showwarning("Error", "Debes seleccionar exactamente 10 valores.")
+    #     return
     
     with open(file_path, 'r', encoding='utf-8') as file:
         data = list(csv.reader(file))

@@ -3,10 +3,11 @@ from flask import Flask, render_template
 from flask_frozen import Freezer
 import csv
 import os
+import shutil
 
 app = Flask(__name__)
 freezer = Freezer(app)
-freezer.app.config['FREEZER_DESTINATION'] = '.'
+# freezer.app.config['FREEZER_DESTINATION'] = '.'
 
 file_path = os.path.join(os.path.dirname(__file__), 'data.csv')
 def obtener_puntuaciones():
@@ -26,3 +27,6 @@ def index():
 
 if __name__ == '__main__':
     freezer.freeze()
+    
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    shutil.copy('./build/index.html', './index.html')
