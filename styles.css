@@ -24,11 +24,11 @@ td:not(.name), th:not(.name){
 	font-size: 0.75em;
 	vertical-align: middle;
 }
-h1 {
+/* h1 {
 	color: #ffffff;
 	background-color: #00000098;
   	padding: 10px;
-	width: 390px; /* Ancho fijo para el elemento h1 (puedes ajustar el valor según tus necesidades) */
+	width: 390px; 
 	margin: 0 auto;
 	border-radius: 20px;
-  }
+  } */
