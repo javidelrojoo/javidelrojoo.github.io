@@ -1,0 +1,34 @@
+::selection {
+  background-color: #24830b;
+  color: white;
+}
+body{
+	margin: 20px;
+    background-image: url('grass.jpg');
+    background-repeat: repeat;
+}
+.mark{
+	background-color: #80c18785!important;
+}
+td:not(.name), th:not(.name){
+	text-align: center;
+}
+.table {
+    border: 5px solid #aca!important;
+}
+.page-content{
+	max-width: 1200px;
+	margin: auto;
+}
+.footer-table{
+	font-size: 0.75em;
+	vertical-align: middle;
+}
+h1 {
+	color: #ffffff;
+	background-color: #00000098;
+  	padding: 10px;
+	width: 390px; /* Ancho fijo para el elemento h1 (puedes ajustar el valor según tus necesidades) */
+	margin: 0 auto;
+	border-radius: 20px;
+  }
