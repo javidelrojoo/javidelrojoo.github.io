@@ -19,11 +19,11 @@ def obtener_puntuaciones():
 
 @app.route('/')
 def index():
-    puntuaciones = obtener_puntuaciones()
+    puntuaciones = [x for x in obtener_puntuaciones() if float(x[1]) + float(x[2]) + float(x[3]) >= 3]
     effs = [(float(x[1])*3+float(x[2]))/(float(x[1]) + float(x[2]) + float(x[3])) for x in puntuaciones]
-    max_eff = [i for i,x in enumerate(effs) if x == max(effs)]
-    
     PJs = [float(x[1]) + float(x[2]) + float(x[3]) for x in puntuaciones]
+    
+    max_eff = [i for i,x in enumerate(effs) if x == max(effs)]
     max_PJ = [i for i,x in enumerate(PJs) if x == max(PJs)]
     return render_template('index.html', puntuaciones=puntuaciones, max_eff=max_eff, max_PJ=max_PJ)
 
