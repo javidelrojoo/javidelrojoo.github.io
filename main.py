@@ -3,7 +3,7 @@ import csv
 import os
 from js import document
 
-file_path = 'data.csv' #os.path.join(os.path.dirname(__file__), 'data.csv')
+file_path = 'data.csv'
 
 def obtener_puntuaciones():
     with open(file_path, 'r', encoding='utf-8') as file:
