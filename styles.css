@@ -24,6 +24,9 @@ td:not(.name), th:not(.name){
 	font-size: 0.75em;
 	vertical-align: middle;
 }
+.bold {
+    font-weight: bold;
+}
 /* h1 {
 	color: #ffffff;
 	background-color: #00000098;
