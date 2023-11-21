@@ -27,6 +27,9 @@ td:not(.name), th:not(.name){
 .bold {
     font-weight: bold;
 }
+.center {
+    text-align: center;
+}
 /* h1 {
 	color: #ffffff;
 	background-color: #00000098;
